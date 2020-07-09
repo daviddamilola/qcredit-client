@@ -49,6 +49,12 @@ export default function Repay({id}){
 
     const [loading, setLoading] =  React.useState(false)
 
+    const [show, setShow] = React.useState({
+        status: false,
+        message: '',
+        severity:''
+      })
+
     const [client, setClient] = useState({
         amountPaid: ''
       });
@@ -71,8 +77,17 @@ export default function Repay({id}){
               try {
                   const response = await makeRepayment(client, id);
                   if(response.status === 400 )throw (response);
+                  setShow({
+                    status: true,
+                    message: 'success',
+                    severity: 'error'
+                })
               } catch (error) {
-                  console.log(error)
+                setShow({
+                    status: true,
+                    message: 'an error occured',
+                    severity: 'error'
+                })
               }
             }
           })

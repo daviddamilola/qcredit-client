@@ -35,7 +35,7 @@ function Repayments() {
             } catch (error) {
                 setShow({
                     status: true,
-                    message: `${error.data.error}`,
+                    message: `${'an error occured'}`,
                     severity: 'error'
                 })
             }
