@@ -1,209 +1,180 @@
-import Head from 'next/head'
+import React from 'react';
+import SmHeader, { useSideProvider} from '../components/Drawer';
+
 
 export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+    const {show, setShow} = useSideProvider();
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+    const toggleShow = (e) => {
+        e.preventDefault()
+        setShow(!show)
+    }
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+    return (
+        <>
+            <div id="landingPage">
+                <div className="container logoArea row row__spread mb-1">
+                    <div className="">
+                    <img src={'/img/Logo.svg'} alt="quickcredit logo" />
+                    </div>
+                    <div className="row access col__Center">
+                        <a href="/signup"><button className="jumbobtn btn ml-1">Sign Up</button></a>
+                        <a href="/signin"><button className="jumbobtn btn">Login</button></a>
+                    </div>
+                    <div className="navBtn" onClick={toggleShow}>
+                        <div className="line"></div>
+                        <div className="line"></div>
+                        <div className="line"></div>
+                    </div>
+                </div>
+                {
+                    show && <div id="mySidenav" className="sidenav paddinglr">
+                        <a href="" onClick={toggleShow} className="closebtn">&times;</a>
+                        <ul>
+                            <li className="sideNavItem ">
+                                <a href="/apply" id="apply4loan">Apply For Loan</a>
+                            </li>
+                            <li className="sideNavItem ">
+                                <a href="/#services">services</a>
+                            </li>
+                            <li className="sideNavItem ">
+                                <a href="/#provide">We Provide</a>
+                            </li>
+                            <li className="sideNavItem links"><a href="/apply"><button className="btn"> Apply For A Loan</button></a></li>
+                        </ul>
+                    </div>
+                }
+                
+                <nav className=" container nav row row__spread col-11">
+                    <div className=" col-6 col col__Center navLinks">
+                        <ul className="row  container">
+                            <li className="links ml-1"><a href="/">Home</a></li>
+                            <li className="links ml-1"><a href="/#services">Service</a></li>
+                            <li className="links  ml-1"><a href="/#provide">We Provide</a></li>
+                            <li className="links  ml-1"><a href="/apply">Apply For A Loan</a></li>
+                        </ul>
+                    </div>
+                    <form className="col-4 row col__center search">
+                        <input type="search" name="search" id="search" placeholder="Search" className="col-11"/>
+                        <button type="submit" className="col-1 ">
+                            <img src='/img/magnifying.png' />
+                        </button>
+                    </form>
+                </nav>
+                <div className="container mt-4 pb-2">
+                    <p>WE HELP YOU</p>
+                    <h2> Get A Loan In A Short Time</h2>
+                    <p>Save yourself the stress of filling enormous forms just for the sake of getting a loan. Get a loan in
+                        record time and with little effort .....</p>
+                    <div>
+                        <div className="apply">
+                            <button className="btn"><a href="/apply">Apply For A Loan</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section id="provide" className="container about row row_center col_Center ">
+        <div className="col col__Center col-4 padding ontimeService">
+            <img src="/img/home-icon-1.png" alt=""/>
+            <div className="text_center">
+                <h4>On Time Service</h4>
+                <p>Your loan applications are approved in record time.</p>
+            </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
         </div>
-      </main>
+        <div className="col col__Center col-4 padding professionalsTeam">
+            <img src="/img/home-icon-2.png" alt=""/>
+            <div className="text_center">
+                <h4>A Team Of Professionals</h4>
+                <p>A dedicated team is available for whatsoever enquiries you might have.</p>
+            </div>
+        </div>
+        <div className="col col__Center col-4 padding analyseBusiness">
+            <img src="/img/home-icon-3.png" alt=""/>
+            <div className="text_center">
+                <h4>Boost Your Business</h4>
+                <p>Get enough loan to take that business to the next level.</p>
+            </div>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
+        </div>
+    </section>
+            <section className="col col__Center padding " id="services">
+                <div className="sectionHeading ">
+                    <h2 className="text_center">Services We Provide</h2>
+                    <h6 className="text_center">Covered In This Areas</h6>
+                </div>
+                <div className="row container padding serviceGrid">
+                    <div className="col col__Center col-4 eachService">
+                        <img src="/img/carLoan.jpg" alt="" width="75px" height="75px"/>
+                        <div className="text_center">
+                            <h4>CAR LOANS</h4>
+                            <p>Need To Buy A Car? We Have Got You Covered.</p>
+                        </div>
+                    </div>
+                    <div className="col col__Center col-4 eachService">
+                        <img src="/img/houseLoan.png" alt="" width="75px" height="75px"/>
+                        <div className="text_center">
+                            <h4>HOME LOANS</h4>
+                            <p>A Roof Can Be Over Your Head In No Time, Our Housing Loans Are The Best</p>
+                        </div>
+                    </div>
+                    <div className="col col__Center col-4 eachService">
+                        <img src="/img/lend.png" alt="" width="75px" height="75px"/>
+                        <div className="text_center">
+                            <h4>QUICK CASH</h4>
+                            <p>Empty Pockets Are Not A Good Thing, Get A Refill Today</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
+            <section className=" requestCallBack">
+                <div className="container row padding">
+                    <div className=" requestCallBackText mb-2 col-6">
+                        <h3>Request Call Back</h3>
+                        <hr/>
+                        <p>Do You Have A Message Or An Enquiry To Make? Reach Out To Us You Will Get A Reply In No Time.</p>
+                    </div>
+                    <div className=" col-6 requestCallBackForm">
+                        <form action="" method="post" className="container row row__spread">
+                            <input type="text" name="" id="" className="col-5 mb-2" placeholder="Full Name*"/>
+                            <input type="email" name="" id="" className="col-5 mb-2" placeholder="Email*"/>
+                            <input type="text" name="" id="" className="col-5 mb-2" placeholder="Subject*"/>
+                            <input type="number" name="" id="" className="col-5 mb-2" placeholder="Phone Number"/>
+                            <textarea name="" id="" cols="30" rows="10" className="col-12 mb-2" placeholder="Message*"></textarea>
+                            <button type="submit" className="btn">Submit Now</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section className="container col col__Center mission padding">
+                <div className="col- missionImg">
+                    <img src="/img/mission.jpg" alt=""/>
+                </div>
+                <div className="col col__Center col-6 Text">
+                    <h1 className="quote text_center">"</h1>
+                    <div className="text_center ">
+                        <p>Trade money for time, not time for money. You’re going to run out of time first. </p>
+                    </div>
+                    <div className="yoursFaithfully text_center">
+                        <p>Naval Ravikant</p>
+                    </div>
+                </div>
+            </section>
+            <footer className=" index-footer">
+                <div className="container row row__spread col__Center">
+                    <div className=" col-5 col-s-5">
+                        <div className=" address">
+                            <h3>QuickCredit</h3>
+                        </div>
+                    </div>
+                    <div className=" col-5 col-s-5">
+                        <div className="r-txt-align">Copyright 2019, All Right Reserved</div>
+                    </div>
+                </div>
+            </footer>
+        </>
+    )
 }
