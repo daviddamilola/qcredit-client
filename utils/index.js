@@ -16,6 +16,16 @@ export const cssHelper = {
     }
 };
 
+const moneyConvert = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN'
+});
+
+export const format = (value) => {
+    return moneyConvert.format(value)
+}
+
+
 export const sort = (array,by) => {
     switch (by) {
         case 'date':

@@ -9,10 +9,6 @@ export default function History() {
     const [history, setHistory] = React.useState([]);
     const {loans} = useLoans();
 
-    const moneyConvert = new Intl.NumberFormat('en-NG', {
-        style: 'currency',
-        currency: 'NGN'
-    });
 
     useEffect(() => {
        setHistory(loans)

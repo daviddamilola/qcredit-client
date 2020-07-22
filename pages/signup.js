@@ -83,7 +83,6 @@ export default function SignUp(){
         e.preventDefault();
         Object.keys(inputs).forEach(input => {
             if (!(input in formIsValid && formIsValid[input])) {
-                console.log(Array.from(formRef.current.querySelectorAll('input')))
               const field = Array.from(formRef.current.querySelectorAll('input')).find(
                 x => x.name === input
               );
@@ -103,7 +102,7 @@ export default function SignUp(){
                             message: 'success',
                             severity: 'success'
                         });
-                        console.log('user is', user)
+                        
                         if(user.isadmin) {
                             localStorage.setItem('privi', 2)
                             return Router.push('/admin')

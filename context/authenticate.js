@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react'
 import api from '../services/api';
 import authGetter from '../libs/auth';
 import Router from 'next/router';
+import axios from 'axios';
 
 
 const AuthContext = createContext({});
@@ -13,27 +14,41 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [reset, setReset] = useState(1)
 
+  
+
     useEffect(() => {
+        let CancelToken = axios.CancelToken.source();
+        
         Router.prefetch('/signin');
+
         async function loadUserFromStorage() {
             const token = authGetter()?.token;
             if (token !== 'null') {
                 //get token from local storage and see if its valid
                 api.defaults.headers.Authorization = token
                 try {
-                    const { data: {data}} = await api.get('user')
+                    const { data: {data}} = await api.get('user',{
+                        cancelToken: CancelToken.token,
+                    })
+
                     const {data: {data: users}} = await api.get('users')
                     if (data) setUser(data);
                     if (users) setUsers(users)
                     setLoading(false)
                 } catch (error) {
+                    if(axios.isCancel(error)){
+                        console.log('request canceled');
+                    }
                     setLoading(false)
                     // not authorized or some network or technical error
                 }
             }
         }
         loadUserFromStorage()
-    }, [reset])
+        return () => {
+           CancelToken.cancel('loan request canceled');
+        }
+    }, [])
 
     const login = async (data) => {
         try{
@@ -58,14 +73,15 @@ export const AuthProvider = ({ children }) => {
     }
 
     const signUp = async (data) => {
+        const lData = data;
         try{
-            const response = await api.post('auth/signup', data)
+            const response = await api.post('auth/signup', lData)
             const authToken = response.data.data.token;
-            if (authToken) {
+            localStorage.setItem('auth', authToken)
+            
                 api.defaults.headers.Authorization = `${authToken}`
-                const { data } = await api.get('user')
-                setUser(data.data)
-            }
+                const { data: { data }} = await api.get('user')
+                setUser(data)
             return Promise.resolve(response)
         } catch(err){
             return Promise.reject(err)

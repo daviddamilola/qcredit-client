@@ -2,7 +2,7 @@ import Axios from "axios";
 
 let urls = {
     test: `https://qcreditapp.herokuapp.com/api/v1/`,
-    development: 'http://localhost:4000/api/v1/',
+    development: 'https://qcreditapp.herokuapp.com/api/v1/',
     production: 'https://qcreditapp.herokuapp.com/api/v1/',
 }
 const api = Axios.create({

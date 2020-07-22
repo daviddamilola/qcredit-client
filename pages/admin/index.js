@@ -7,11 +7,16 @@ import {Redirecter} from '../../hoc/Redirecter';
 function Admin() {
     return(
         <>
-            <SideProvider>
                 <MainAdmin>
-                    <Overview />
+                    <Overview 
+                        repaid={400000} 
+                        approved={600000}
+                        pending={0}
+                        applications={1}
+                        repayments={3}
+                         />
                 </MainAdmin>
-            </SideProvider>
+  
         </>
     )
 }
