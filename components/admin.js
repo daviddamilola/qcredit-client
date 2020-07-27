@@ -34,7 +34,7 @@ function Dashboard({ children }) {
 
     
     const mLinks = [
-        { name: 'Home', route: '/admin/', icon: '/img/home.svg' },
+        { name: 'Home', route: '/admin', icon: '/img/home.svg' },
         { name: 'Verify Clients', route: '/admin/verify', icon: '/img/home.svg' },
         { name: 'Current Loans', route: '/admin/current-loans', icon: '/img/home.svg' },
         { name: 'Loan Applications', route: '/admin/loan-applications', icon: '/img/home.svg' },

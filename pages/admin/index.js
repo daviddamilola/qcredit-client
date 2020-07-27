@@ -14,6 +14,7 @@ function Admin() {
                         pending={0}
                         applications={1}
                         repayments={3}
+                        admin={true}
                          />
                 </MainAdmin>
   
@@ -21,4 +22,4 @@ function Admin() {
     )
 }
 
-export default Redirecter(Admin)
+export default Admin

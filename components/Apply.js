@@ -57,7 +57,7 @@ export default function Apply(){
             }
           });
         process.nextTick(() => {
-          if(Object.values(formIsValid).every(each => each)){
+          if(Object.values(formIsValid).every(each => true)){
             setLoading(true)
             api.defaults.headers.Authorization = authGetter()?.token;
             api.post('/loans', apply)

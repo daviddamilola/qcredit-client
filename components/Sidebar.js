@@ -25,6 +25,7 @@ const useStyles= makeStyles(theme => ({
         textDecoration: 'none',
         color: '#fff',
         width: '100%',
+        fontSize: '0.8rem',
         justifyContent:'flex-start',
     }
 }))

@@ -9,6 +9,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import DrawerMain from './DrawerMain';
 import useAuth from '../context/authenticate';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles(theme => ({
     main: {
@@ -36,8 +39,6 @@ const useStyles = makeStyles(theme => ({
         }
     },
     button: {
-        background: '#F2C744',
-        color: '#424242',
         height: '2.2em',
         boxShadow: 'none'
     }
@@ -49,15 +50,39 @@ function Nav({name}) {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
+     const isMenuOpen = Boolean(anchorEl);
+
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+       setAnchorEl(null);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
     };
 
+    const menuId = 'primary-search-account-menu';
+
+    const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+    </Menu>
+  );
+
     return (
+    <>
         <AppBar position="static" className={classes.main}>
                             <Toolbar className={classes.appbar}>
                                 <Typography variant="h6" className={classes.title}>
@@ -73,11 +98,13 @@ function Nav({name}) {
                                 >
                                     <AccountCircle />
                                 </IconButton>
-                                <Button className={classes.button} onClick={() => logout()} variant='contained'>Logout</Button>
+                                <Button className={classes.button} color='primary' onClick={() => logout()} variant='contained'>Logout</Button>
                                 <Hidden mdUp><DrawerMain /></Hidden>
                                 </Grid>
                             </Toolbar>
                         </AppBar>
+                        {renderMenu}
+                        </>
     )
 }
 

@@ -18,8 +18,6 @@ export const LoansProvider = ({ children }) => {
 
     useEffect(() => {
         let CancelToken = axios.CancelToken.source();
-        
-
         async function loadLoans() {
             const token = authGetter()?.token;
             if (token) {

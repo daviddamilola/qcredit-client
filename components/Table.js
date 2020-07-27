@@ -51,18 +51,9 @@ const useStyles = makeStyles(theme => ({
         }
     },
     actionButton: {
-        background: ' #FFEEAF',
         borderRadius: '50px',
         boxShadow: 'none',
         textTransform: 'lowercase',
-        marginRight: '0.5rem',
-        '& :hover':{
-            background: ' #FFEEAF',
-        },
-        '& .MuiButton-label':{
-            background: ' #FFEEAF',
-            borderRadius: '50px',
-        }
     }
 }));
 
@@ -162,7 +153,7 @@ export default function CustomTable({ name, columns, lists = [], values = [], ac
                                                     <Button variant='contained'
                                                     disableRipple={true}
                                                     key={index}
-                                                    className={classes.actionButton} aria-label="edit productDetails" onClick={() => handleClick(method, `${name}-${rowIndex}-${index}`)(each, done, `${name}-${rowIndex}-${index}`, ...args)} data-id={each.id}>
+                                                    className={classes.actionButton} color='primary' aria-label="edit productDetails" onClick={() => handleClick(method, `${name}-${rowIndex}-${index}`)(each, done, `${name}-${rowIndex}-${index}`, ...args)} data-id={each.id}>
                                                         {loading[`${name}-${rowIndex}-${index}`] ? <InlineLoader /> : name}
                                                     </Button>
                                                     

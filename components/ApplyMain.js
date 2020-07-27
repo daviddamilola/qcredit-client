@@ -37,8 +37,10 @@ export default function ApplyMain({ children }) {
   const router = useRouter();
 
   const mLinks = [
+  { name: 'Home', route: '/welcome', icon: '/img/home.svg' },
     { name: 'Apply', route: '/apply', icon: '/img/home.svg' },
     { name: 'History', route: '/history', icon: '/img/home.svg' },
+    { name: 'Active Loans', route: '/active-loans', icon: '/img/home.svg' },
   ]
 
   return (

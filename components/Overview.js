@@ -1,6 +1,6 @@
 import React from 'react';
 import InfoCard from './InfoCard';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from './Card';
 import {format} from '../utils';
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     infoName: {
-        fontSize: '1.2rem',
+        fontSize: '1rem',
         [theme.breakpoints.down('md')]: {
             fontSize: '1rem'
         }
@@ -123,7 +123,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-function Overview({pending, applications, repayments, top, approved, repaid, total}) {
+function Overview({pending, applications, repayments, top, approved, repaid, total, admin=false}) {
     const circleRef = React.createRef(null)
     
     const classes = useStyles();
@@ -156,11 +156,11 @@ function Overview({pending, applications, repayments, top, approved, repaid, tot
             <div className={classes.infowrapper}>
                 <Grid item md={8} sm={12} lg={8} className={classes.infoOverview} >
                     <InfoCard>
-                        <Typography variant='body2' className={classes.infoName}>Pending Users</Typography>
+                        <Typography variant='body2' className={classes.infoName}>{admin?'Pending Users':'Applications'}</Typography>
                         <Typography variant='body1' className={classes.infoNumber}>{pending}</Typography>
                     </InfoCard>
                     <InfoCard>
-                        <Typography variant='body2' className={classes.infoName}>Pending Applications</Typography>
+                        <Typography variant='body2' className={classes.infoName}>{admin? 'Pending Applications': 'Pending Request'}</Typography>
                         <Typography variant='body1' className={classes.infoNumber}>{applications}</Typography>
                     </InfoCard>
                     <InfoCard>
@@ -175,7 +175,7 @@ function Overview({pending, applications, repayments, top, approved, repaid, tot
                     <Grid item md={12} lg={12} sm={12} className={classes.approved}>
                         <Card>
                             <Typography className={classes.infoName}>
-                                Approved Applications
+                                {admin? 'Approved Applications' : 'Current Loan'}
                             </Typography>
                             <div className={classes.approvedDetails}>
                                 <div>
@@ -193,6 +193,7 @@ function Overview({pending, applications, repayments, top, approved, repaid, tot
                                 </svg>
 
                             </div>
+                            {!admin && <Button variant='contained' color='primary'> Apply For A Loan </Button>}
                         </Card>
                     </Grid>
                     <Grid item md={12} lg={12} sm={12}>
@@ -216,7 +217,7 @@ function Overview({pending, applications, repayments, top, approved, repaid, tot
                 <div className={classes.topLenders}>
                     <Card>
                         <Typography className={classes.infoName}>
-                            Top Lenders
+                            {admin?' Top Lenders' : 'Repayment history'}
                     </Typography>
                     </Card>
                 </div>

@@ -101,7 +101,7 @@ export default function SignIn() {
                         if(user.isadmin) {
                             return Router.push('/admin')
                         }else{
-                            return Router.push('/apply')
+                            return Router.push('/welcome')
                         }
                     })
                     .catch(err => {
