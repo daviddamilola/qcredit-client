@@ -2,6 +2,7 @@ import React from 'react';
 import MainAdmin from '../../components/admin';
 import {SideProvider} from '../../components/Drawer';
 import CurrentLoans from '../../components/CurrentLoans';
+import useLoans from '../../context/loans';
 
 export default function Admin() {
 	 const { partiallyPaid, reset,} = useLoans();

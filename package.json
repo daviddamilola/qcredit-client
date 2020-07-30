@@ -7,13 +7,14 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "deploy": "npm run build && npm run export"
+    "deploy": "yarn build && yarn export"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.19.2",
+    "firebase": "^7.17.1",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
